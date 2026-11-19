@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.application'
+    id 'com.chaquo.python'
+}
+
+android {
+    namespace 'com.example.clipnest'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.example.clipnest'
+        minSdk 29
+        targetSdk 35
+        versionCode 7
+        versionName '1.4.1'
+
+    ndk {
+        abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86_64'
+    }
+}
+
+chaquopy {
+    defaultConfig {
+        version = "3.11"
+        pip {
+            install "gallery-dl"
+        }
+    }
+}
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+        resources {
+            excludes += ['META-INF/DEPENDENCIES']
+        }
+    }
+}
+
+dependencies {
+    implementation 'io.github.junkfood02.youtubedl-android:library:0.18.1'
+    implementation 'io.github.junkfood02.youtubedl-android:ffmpeg:0.18.1'
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+}
